@@ -13,6 +13,9 @@ TagManager:
   - BajaVida
   - MatarMob
   - cambionivel
+  - Undefined
+  - piedra
+  - jugador
   layers:
   - Default
   - TransparentFX

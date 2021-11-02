@@ -225,7 +225,7 @@ public class ControlJugador : MonoBehaviour
     {
         switch (Nivel)
         {
-            case 1: SceneManager.LoadScene("nivel2");
+            case 1: SceneManager.LoadScene(2);
                 break;
             default:
                 break;
