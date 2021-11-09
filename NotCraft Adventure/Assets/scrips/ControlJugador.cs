@@ -28,7 +28,8 @@ public class ControlJugador : MonoBehaviour
     public float EjeX;
     public float Ejey;
     private int Nivel = 1;
- 
+    bool paso = false;
+
 
     void Start()
     {
@@ -90,6 +91,7 @@ public class ControlJugador : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("instanciador") == true)
         {
             Camara = true;
@@ -98,9 +100,10 @@ public class ControlJugador : MonoBehaviour
         {
             Camara = false;
         }
-        if (other.gameObject.CompareTag("MuerteLenta") == true)
+        if (!paso && other.gameObject.CompareTag("MuerteLenta") == true)
         {
             InvokeRepeating("PierdeVida", 0, 1.0f);
+            paso = true;
         }
         if (other.gameObject.CompareTag("BajaVida") == true) 
         {
@@ -123,7 +126,7 @@ public class ControlJugador : MonoBehaviour
         //muerte
         if (vida == 0)
         {
-            InvokeRepeating("Muerte", 1.0f, 0);
+            Invoke("Muerte", 1.0f);
         }
     }
 
@@ -135,7 +138,6 @@ public class ControlJugador : MonoBehaviour
 
     public void PierdeVida()
     {
-        
         switch (vida)
         {
             case 5:
@@ -160,6 +162,7 @@ public class ControlJugador : MonoBehaviour
                 break;               
         }
         vida = vida - 1;
+        if (vida < 0) vida = 0;
     }
 
     public void Muerte()
