@@ -2649,6 +2649,10 @@ PrefabInstance:
       propertyPath: capaPiso.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7215496160907473922, guid: 1363d99e910efac48a8bd5e81f9f3267, type: 3}
+      propertyPath: m_TagString
+      value: jugador
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1363d99e910efac48a8bd5e81f9f3267, type: 3}
 --- !u!1001 &118319595
