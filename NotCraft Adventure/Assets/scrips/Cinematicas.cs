@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Cinematicas : MonoBehaviour
 {
     private float timer;
+    public int nivel;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,18 @@ public class Cinematicas : MonoBehaviour
 
         if (timer <= 0)
         {
-            SceneManager.LoadScene(3);
+            switch (nivel)
+            {
+                case 1:  SceneManager.LoadScene(3);
+                    break;
+                case 2:  SceneManager.LoadScene(5);
+                    break;
+                case 3:  SceneManager.LoadScene(0);
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
 }

@@ -26,9 +26,9 @@ public class ControlJugador : MonoBehaviour
     public int vida = 5;
     public GameObject SonidoMuerte;
     public GameObject Zombie;
-    public float EjeX;
-    public float Ejey;
-    private int Nivel = 1;
+    private float EjeX;
+    private float Ejey;
+    public int Nivel = 1;
     bool paso = false;
     public DisparoFuego disparofuego;
 
@@ -129,7 +129,7 @@ public class ControlJugador : MonoBehaviour
     private void Update()
     {
         if (EstaEnPiso()) {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 rb.AddForce(Vector3.up * magnitudSalto, ForceMode.Impulse);
             }
@@ -178,7 +178,20 @@ public class ControlJugador : MonoBehaviour
 
     public void Muerte()
     {
-        SceneManager.LoadScene("Nivel1");
+        switch (Nivel)
+        {
+            case 1:
+                SceneManager.LoadScene(1);
+                break;
+            case 2:
+                SceneManager.LoadScene(3);
+                break;
+            case 3:
+                SceneManager.LoadScene(5);
+                break;
+            default:
+                break;
+        }
     }
  
     public void Run()
@@ -241,10 +254,15 @@ public class ControlJugador : MonoBehaviour
         {
             case 1: SceneManager.LoadScene(2);
                 break;
+            case 2:
+                SceneManager.LoadScene(4);
+                break;
+            case 3:
+                SceneManager.LoadScene(6);
+                break;
             default:
                 break;
         }
-        Nivel++;
     }
     }
     

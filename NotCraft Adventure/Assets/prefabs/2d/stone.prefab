@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3492126730997836648}
   - component: {fileID: 8900676333101570375}
   - component: {fileID: 8242408367501896609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stone
   m_TagString: piso
   m_Icon: {fileID: 0}
