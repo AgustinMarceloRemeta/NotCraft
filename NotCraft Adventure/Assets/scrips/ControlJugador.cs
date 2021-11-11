@@ -10,6 +10,7 @@ public class ControlJugador : MonoBehaviour
     public GameObject Jugador;
     //animador
     public Animator anim;
+    public Animator dragona;
     public LayerMask capaPiso;
     public float magnitudSalto;
     public CapsuleCollider col;
@@ -29,13 +30,13 @@ public class ControlJugador : MonoBehaviour
     public float Ejey;
     private int Nivel = 1;
     bool paso = false;
+    public DisparoFuego disparofuego;
 
 
     void Start()
     {
         col = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
-
     }
 
     public void FixedUpdate()
@@ -112,6 +113,16 @@ public class ControlJugador : MonoBehaviour
         if (other.gameObject.CompareTag("cambionivel") == true)
         {
             cambioLevel();
+        }
+        if (other.gameObject.CompareTag("dragona") == true)
+        {
+            dragona.SetBool("Accion", true);
+            disparofuego.disparo=true;
+        }
+        if (other.gameObject.CompareTag("dragona2") == true)
+        {
+            dragona.SetBool("Accion2", true);
+            disparofuego.disparo=false;
         }
     }
 

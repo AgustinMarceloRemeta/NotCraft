@@ -16,6 +16,10 @@ TagManager:
   - Undefined
   - piedra
   - jugador
+  - "CuboDa\xF1o"
+  - Mano
+  - dragona
+  - dragona2
   layers:
   - Default
   - TransparentFX
