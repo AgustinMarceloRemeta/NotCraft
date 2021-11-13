@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class prueba : MonoBehaviour
+public class Settings : MonoBehaviour
 {
-    public int pruebab = 1;
+    public string dificultad, ControlSalto, ControlMov,ControlSpeed;
     // Start is called before the first frame update
     void Start()
     {
+        dificultad = PlayerPrefs.GetString("Dificultad");
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetString("Dificultad", dificultad); 
         
     }
 }

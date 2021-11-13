@@ -18,12 +18,9 @@ public class ControlJugador : MonoBehaviour
     public bool Camara = false;
     public float fuerza = 0.1f;
     //vida
-    public GameObject cora1;
-    public GameObject cora2;
-    public GameObject cora3;
-    public GameObject cora4;
-    public GameObject cora5;
-    public int vida = 5;
+    public GameObject cora1Ubi, cora2Ubi, cora3Ubi, cora4Ubi, cora5Ubi;
+    public GameObject cora1, cora2, cora3, cora4, cora5;
+    private int vida;
     public GameObject SonidoMuerte;
     public GameObject Zombie;
     private float EjeX;
@@ -31,12 +28,18 @@ public class ControlJugador : MonoBehaviour
     public int Nivel = 1;
     bool paso = false;
     public DisparoFuego disparofuego;
+    public Settings settings;
+    public GameObject[] corazones;
 
 
     void Start()
     {
+        vida = 5;
+        if (settings.dificultad == "easy") vida = 5;
+        if (settings.dificultad == "hard" || settings.dificultad == "hardcore") vida = PlayerPrefs.GetInt("vida");
         col = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
+        Spawncorazones();
     }
 
     public void FixedUpdate()
@@ -129,7 +132,7 @@ public class ControlJugador : MonoBehaviour
     private void Update()
     {
         if (EstaEnPiso()) {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.AddForce(Vector3.up * magnitudSalto, ForceMode.Impulse);
             }
@@ -139,6 +142,7 @@ public class ControlJugador : MonoBehaviour
         {
             Invoke("Muerte", 1.0f);
         }
+        PlayerPrefs.SetInt("vida", vida);
     }
 
     private bool EstaEnPiso()
@@ -172,13 +176,14 @@ public class ControlJugador : MonoBehaviour
                 Instantiate(SonidoMuerte, Jugador.transform.position, Quaternion.identity);
                 break;               
         }
-        vida = vida - 1;
+        vida--;
         if (vida < 0) vida = 0;
     }
 
     public void Muerte()
     {
-        switch (Nivel)
+     if(settings.dificultad == "easy"|| settings.dificultad == "hard")   
+            switch (Nivel)
         {
             case 1:
                 SceneManager.LoadScene(1);
@@ -192,6 +197,7 @@ public class ControlJugador : MonoBehaviour
             default:
                 break;
         }
+        if (settings.dificultad == "hardcore") SceneManager.LoadScene(1);
     }
  
     public void Run()
@@ -262,6 +268,50 @@ public class ControlJugador : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void Spawncorazones() 
+    {
+        
+        for (int i = 0; i < vida; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    {
+                        cora5 = Instantiate(corazones[i], cora5Ubi.transform.position, Quaternion.identity);
+                        cora5.transform.SetParent(cora5Ubi.transform);
+                    }
+                    break;
+                case 1:
+                    {
+                        cora4 = Instantiate(corazones[i], cora4Ubi.transform.position, Quaternion.identity);
+                        cora4.transform.SetParent(cora4Ubi.transform);
+
+                    }
+                    break;
+                case 2:
+                    {
+                        cora3 = Instantiate(corazones[i], cora3Ubi.transform.position, Quaternion.identity);
+                        cora3.transform.SetParent(cora3Ubi.transform);
+                    }
+                    break;
+                case 3:
+                    {
+                        cora2 = Instantiate(corazones[i], cora2Ubi.transform.position, Quaternion.identity);
+                        cora2.transform.SetParent(cora2Ubi.transform);
+                    }
+                    break;
+                case 4:
+                    {
+                        cora1 = Instantiate(corazones[i], cora1Ubi.transform.position, Quaternion.identity);
+                        cora1.transform.SetParent(cora1Ubi.transform);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
     }
