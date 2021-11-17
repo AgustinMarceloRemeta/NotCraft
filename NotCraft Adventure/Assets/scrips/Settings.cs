@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    public string dificultad, ControlSalto, ControlMov,ControlSpeed;
+    public string dificultad;
     // Start is called before the first frame update
     void Start()
     {

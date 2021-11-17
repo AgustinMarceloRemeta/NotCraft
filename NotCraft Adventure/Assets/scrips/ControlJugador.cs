@@ -13,8 +13,8 @@ public class ControlJugador : MonoBehaviour
     public Animator dragona;
     public LayerMask capaPiso;
     public float magnitudSalto;
-    public CapsuleCollider col;
-    private Rigidbody rb;
+    public CapsuleCollider2D col;
+    private Rigidbody2D rigidbody2d;
     public bool Camara = false;
     public float fuerza = 0.1f;
     //vida
@@ -30,70 +30,51 @@ public class ControlJugador : MonoBehaviour
     public DisparoFuego disparofuego;
     public Settings settings;
     public GameObject[] corazones;
+    private bool EstaEnPiso;
 
 
     void Start()
     {
-        vida = 5;
-        if (settings.dificultad == "easy") vida = 5;
-        if (settings.dificultad == "hard" || settings.dificultad == "hardcore") vida = PlayerPrefs.GetInt("vida");
-        col = GetComponent<CapsuleCollider>();
-        rb = GetComponent<Rigidbody>();
+       
+        Cursor.lockState = CursorLockMode.Locked;
+        if (Nivel == 1) vida = 5;
+        else if (!(Nivel == 1))
+        {
+            if (settings.dificultad == "easy") vida = 5;
+            if (settings.dificultad == "hard" || settings.dificultad == "hardcore") vida = PlayerPrefs.GetInt("vida");
+        }
         Spawncorazones();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     public void FixedUpdate()
     {
+        //caminar =  Walk();
 
-        EjeX = transform.position.x;
-        Ejey = transform.position.y;
-        // intento de no moverse de lugar
-        if (transform.position.z <= -0.1 || transform.position.z >= -0.1)
-        {
-            transform.position = new Vector3(EjeX, Ejey, 0.1f);
-         }
+        float horizontal = Input.GetAxis("Horizontal") * fuerza;
+        rigidbody2d.velocity= new Vector2(horizontal, rigidbody2d.velocity.y);
 
-        
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(fuerza, 0, 0);
-                Walk();
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                
-            }
-        
-        
-         if (Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(fuerza, 0, 0);
-                Walk();
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-        
-        // (Para correr)
-         if (Input.GetKey("left shift"))
+        if(Input.GetKey(KeyCode.A)|| Input.GetKey("left") ) transform.rotation = Quaternion.Euler(0, 180, 0);
+        if (Input.GetKey(KeyCode.D)|| Input.GetKey("right")) transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (Input.GetKey("left shift"))
          {
-            fuerza = 0.15f;
+            fuerza = 8f;
              Run();
         }
  
        if (!(Input.GetKey("left shift")))
          {
-             fuerza = 0.1f;
+             fuerza = 6f;
+            Walk();
         }
 
-        if (!(Input.GetKey(KeyCode.A)) && !(Input.GetKey(KeyCode.D)))
+        if (horizontal == 0)
         {
             NoAnim();
-        }
-        if ((Input.GetKey(KeyCode.A)) && (Input.GetKey(KeyCode.D)))
-            {
-            NoAnim();
-        }
-        
+        }       
     }
-
-    private void OnTriggerEnter(Collider other)
+ 
+    private void OnTriggerEnter2D(Collider2D other)
     {
         
         if (other.gameObject.CompareTag("instanciador") == true)
@@ -111,7 +92,7 @@ public class ControlJugador : MonoBehaviour
         }
         if (other.gameObject.CompareTag("BajaVida") == true) 
         {
-            PierdeVida(); 
+            PierdeVida();
         }
         if (other.gameObject.CompareTag("cambionivel") == true)
         {
@@ -131,12 +112,16 @@ public class ControlJugador : MonoBehaviour
 
     private void Update()
     {
-        if (EstaEnPiso()) {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.AddForce(Vector3.up * magnitudSalto, ForceMode.Impulse);
-            }
+        if (Physics2D.Raycast(transform.position, Vector3.down,0.1f, LayerMask.GetMask("piso")))
+            EstaEnPiso = true;
+        else EstaEnPiso = false;
+
+        if (EstaEnPiso) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
         }
+         }
         //muerte
         if (vida == 0)
         {
@@ -145,11 +130,12 @@ public class ControlJugador : MonoBehaviour
         PlayerPrefs.SetInt("vida", vida);
     }
 
-    private bool EstaEnPiso()
+    private void Jump()
     {
-        return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x,
-        col.bounds.min.y, col.bounds.center.z), col.radius * .9f, capaPiso);
+        rigidbody2d.AddForce(Vector2.up*magnitudSalto);
     }
+
+
 
     public void PierdeVida()
     {

@@ -78,4 +78,16 @@ public class Menu : MonoBehaviour
         Firtsdificultad.SetActive(false);
         menu.SetActive(true);
     }
+    public void nivel1()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void nivel2()
+    {
+        SceneManager.LoadScene(3);
+    }
+    public void nivel3()
+    {
+        SceneManager.LoadScene(5);
+    }
 }

@@ -1921,9 +1921,9 @@ GameObject:
   m_Component:
   - component: {fileID: 602475919975765388}
   - component: {fileID: 7276762008668156299}
-  - component: {fileID: 6515338913846116684}
   - component: {fileID: 7215496160907473920}
-  - component: {fileID: 7215496160907473927}
+  - component: {fileID: 4569145261877175999}
+  - component: {fileID: 7486673577975167098}
   m_Layer: 3
   m_Name: Jugador
   m_TagString: Untagged
@@ -1939,7 +1939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7215496160907473922}
   m_LocalRotation: {x: -0, y: 0.024224423, z: -0, w: 0.9997066}
-  m_LocalPosition: {x: -8, y: -3.84, z: -0.1}
+  m_LocalPosition: {x: -7.97, y: -3.62, z: -0.1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1359603585342956279}
@@ -1991,22 +1991,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &6515338913846116684
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7215496160907473922}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
 --- !u!114 &7215496160907473920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2025,35 +2009,63 @@ MonoBehaviour:
   capaPiso:
     serializedVersion: 2
     m_Bits: 1
-  magnitudSalto: 4.5
-  col: {fileID: 7215496160907473927}
+  magnitudSalto: 250
+  col: {fileID: 7486673577975167098}
   Camara: 0
   fuerza: 0.1
+  cora1Ubi: {fileID: 0}
+  cora2Ubi: {fileID: 0}
+  cora3Ubi: {fileID: 0}
+  cora4Ubi: {fileID: 0}
+  cora5Ubi: {fileID: 0}
   cora1: {fileID: 0}
   cora2: {fileID: 0}
   cora3: {fileID: 0}
   cora4: {fileID: 0}
   cora5: {fileID: 0}
-  vida: 5
   SonidoMuerte: {fileID: 8566240318389295864, guid: 2717692f41dc15446825305c2082933f, type: 3}
   Zombie: {fileID: 0}
-  EjeX: 0
-  Ejey: 0
+  Nivel: 1
   disparofuego: {fileID: 0}
---- !u!136 &7215496160907473927
-CapsuleCollider:
+  settings: {fileID: 0}
+  corazones: []
+--- !u!50 &4569145261877175999
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7215496160907473922}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0.63
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &7486673577975167098
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215496160907473922}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.07978968
-  m_Height: 0.6921872
-  m_Direction: 1
-  m_Center: {x: 0.0018171569, y: 0.34823903, z: 0.009515566}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0016270501, y: 0.31971952}
+  m_Size: {x: 0.13346681, y: 0.64081067}
+  m_Direction: 0
 --- !u!1 &7390244669347301556
 GameObject:
   m_ObjectHideFlags: 0

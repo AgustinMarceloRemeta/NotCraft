@@ -10,6 +10,7 @@ public class Cinematicas : MonoBehaviour
     void Start()
     {
         timer = 15f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

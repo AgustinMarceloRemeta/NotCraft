@@ -18,7 +18,7 @@ public class fuego : MonoBehaviour
     {
         transform.position += transform.right * rapidez * Time.deltaTime;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
        if(other.gameObject.CompareTag("piedra")== true) Destroy(fire);
         if (other.gameObject.CompareTag("jugador") == true)

@@ -21,7 +21,7 @@ public class zombie1 : MonoBehaviour
 	{
 		ZombieWalk();
 		{
-			if (transform.position.x >= 7.02)
+			if (transform.position.x >= 7)
 			{
 				IrDerecha = true;
 			}

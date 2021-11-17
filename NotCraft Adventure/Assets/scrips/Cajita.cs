@@ -17,7 +17,8 @@ public class Cajita : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+   
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("piso")) Destroy(Cubo);
         if (other.gameObject.CompareTag("jugador")&& !toco)
