@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Cinematicas : MonoBehaviour
 {
-    private float timer;
+    public float timer;
     public int nivel;
     // Start is called before the first frame update
     void Start()
     {
-        timer = 15f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 

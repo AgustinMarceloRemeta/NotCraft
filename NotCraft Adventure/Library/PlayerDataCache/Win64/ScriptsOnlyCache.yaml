@@ -24,13 +24,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
-    - UnityEditor.Graphs.ParameterControllerEditor
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -155,9 +148,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
     - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
@@ -198,7 +191,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4334}
     - Class: 114
-      Script: {instanceID: 99250}
+      Script: {instanceID: 19074}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -292,6 +285,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 62
+      Script: {instanceID: 0}
     - Class: 70
       Script: {instanceID: 0}
     - Class: 74
@@ -382,6 +377,8 @@ ScriptsOnlyBuild:
     - Class: 58
       Script: {instanceID: 0}
     - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
       Script: {instanceID: 0}
     - Class: 70
       Script: {instanceID: 0}
@@ -998,7 +995,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: a7f6b3ed4945e64fe52d0a40c0089b83
+      Hash: d4629f055b291038ceda673c447e0bdf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ControlJugador

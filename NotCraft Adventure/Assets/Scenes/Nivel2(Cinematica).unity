@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 678253878}
   - component: {fileID: 678253877}
   m_Layer: 0
-  m_Name: cinematica 1
+  m_Name: cinematica 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a50836c96c10fe478b18c922f212c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 35
   nivel: 2
 --- !u!328 &678253878
 VideoPlayer:
@@ -245,7 +246,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678253876}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 8260b746c925d9042934b86b666eb256, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 793ee8ff76aed6644893a1c6f8ca50ec, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 317536954}

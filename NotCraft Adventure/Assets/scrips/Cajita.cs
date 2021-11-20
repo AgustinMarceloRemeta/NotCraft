@@ -25,7 +25,8 @@ public class Cajita : MonoBehaviour
         {
             toco = true;
             Destroy(Cubo);
-            controlJugador.PierdeVida();                
+            controlJugador.PierdeVida();
+            controlJugador.cuenta = 0.5f;
         }
         }
 }

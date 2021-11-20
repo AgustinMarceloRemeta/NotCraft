@@ -31,17 +31,20 @@ public class ControlJugador : MonoBehaviour
     public Settings settings;
     public GameObject[] corazones;
     private bool EstaEnPiso;
+    public float cuenta;
 
 
     void Start()
     {
        
         Cursor.lockState = CursorLockMode.Locked;
+        vida = 5;
+
         if (Nivel == 1) vida = 5;
         else if (!(Nivel == 1))
-        {
+      {
             if (settings.dificultad == "easy") vida = 5;
-            if (settings.dificultad == "hard" || settings.dificultad == "hardcore") vida = PlayerPrefs.GetInt("vida");
+           if (settings.dificultad == "hard" || settings.dificultad == "hardcore") vida = PlayerPrefs.GetInt("vida");
         }
         Spawncorazones();
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -50,28 +53,40 @@ public class ControlJugador : MonoBehaviour
     public void FixedUpdate()
     {
         //caminar =  Walk();
+        float horizontal = 0;
 
-        float horizontal = Input.GetAxis("Horizontal") * fuerza;
-        rigidbody2d.velocity= new Vector2(horizontal, rigidbody2d.velocity.y);
-
-        if(Input.GetKey(KeyCode.A)|| Input.GetKey("left") ) transform.rotation = Quaternion.Euler(0, 180, 0);
-        if (Input.GetKey(KeyCode.D)|| Input.GetKey("right")) transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (Input.GetKey("left shift"))
-         {
-            fuerza = 8f;
-             Run();
-        }
- 
-       if (!(Input.GetKey("left shift")))
-         {
-             fuerza = 6f;
-            Walk();
-        }
-
-        if (horizontal == 0)
+        if ((Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) || (Input.GetKey("left") && Input.GetKey("right")))
         {
+            horizontal = 0;
             NoAnim();
-        }       
+        }
+
+        else
+        {
+            horizontal = Input.GetAxis("Horizontal") * fuerza;
+            rigidbody2d.velocity = new Vector2(horizontal, rigidbody2d.velocity.y);
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey("left")) transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (Input.GetKey(KeyCode.D) || Input.GetKey("right")) transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (Input.GetKey("left shift"))
+            {
+                fuerza = 8f;
+                Run();
+            }
+
+            if (!(Input.GetKey("left shift")))
+            {
+                fuerza = 6f;
+                Walk();
+            }
+
+
+
+            if (horizontal == 0)
+            {
+                NoAnim();
+            }
+        }
     }
  
     private void OnTriggerEnter2D(Collider2D other)
@@ -93,6 +108,7 @@ public class ControlJugador : MonoBehaviour
         if (other.gameObject.CompareTag("BajaVida") == true) 
         {
             PierdeVida();
+            
         }
         if (other.gameObject.CompareTag("cambionivel") == true)
         {
@@ -128,6 +144,8 @@ public class ControlJugador : MonoBehaviour
             Invoke("Muerte", 1.0f);
         }
         PlayerPrefs.SetInt("vida", vida);
+        cuenta -= Time.deltaTime;
+        if (cuenta > 0) fuerza = 0;
     }
 
     private void Jump()
